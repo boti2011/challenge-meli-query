@@ -1,0 +1,13 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /challenge
+
+spring:
+  application:
+    name: challenge-meli
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://us-cdbr-east-03.cleardb.com/heroku_160131ab73a8533?reconnect=true
+    username: bef69021497056
+    password: e8f05ca8
