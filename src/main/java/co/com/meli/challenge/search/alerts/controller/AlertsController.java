@@ -26,10 +26,7 @@ public class AlertsController {
   private final SearchAlertService service;
 
   @ApiOperation(value = "Search of alerts by description field", response = ResponseEntity.class)
-  @RequestMapping(
-      method = RequestMethod.GET,
-      path = "/description",
-      produces = "application/json")
+  @RequestMapping(method = RequestMethod.GET, path = "/description", produces = "application/json")
   @ApiResponses(
       value = {
         @ApiResponse(code = 200, message = "Success search"),
@@ -57,10 +54,7 @@ public class AlertsController {
             code = 404,
             message = "Success search but can't get information for this description")
       })
-  @RequestMapping(
-      method = RequestMethod.GET,
-      path = "/name",
-      produces = "application/json")
+  @RequestMapping(method = RequestMethod.GET, path = "/name", produces = "application/json")
   @GetMapping("/name")
   public ResponseEntity<SearchAlertResponse> findAlertByServerName(
       @RequestParam(name = "name") String serverName,
@@ -69,6 +63,26 @@ public class AlertsController {
     LOGGER.info("ServerName: {}", serverName);
     Pageable paging = PageRequest.of(page, size);
     SearchAlertResponse response = service.getAlertsByServerName(serverName, paging);
+    return new ResponseEntity<>(response, HttpStatus.OK);
+  }
+
+  @ApiOperation(value = "Search of alerts by any field", response = ResponseEntity.class)
+  @ApiResponses(
+      value = {
+        @ApiResponse(code = 200, message = "Success search"),
+        @ApiResponse(
+            code = 404,
+            message = "Success search but can't get information for this description")
+      })
+  @RequestMapping(method = RequestMethod.GET, path = "/any/field", produces = "application/json")
+  @GetMapping("/any/field")
+  public ResponseEntity<SearchAlertResponse> findAlertByAnyField(
+      @RequestParam(name = "field") String field,
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "5") int size) {
+    LOGGER.info("field: {}", field);
+    Pageable paging = PageRequest.of(page, size);
+    SearchAlertResponse response = service.getAlertsByAnyField(field, paging);
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 }

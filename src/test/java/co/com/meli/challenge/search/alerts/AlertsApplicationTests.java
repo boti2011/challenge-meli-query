@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @Import(AlertsApplication.class)
 @SpringBootTest
-@ContextConfiguration(classes= Config.class)
+@ContextConfiguration(classes = Config.class)
 class AlertsApplicationTests {
 
   @Autowired Config config;
