@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/alerts/search")
 @RequiredArgsConstructor
-@Api(value = "Search of alerts by his properties")
+@Api(value = "API for search of alerts by his properties")
 public class AlertsController {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AlertsController.class);
