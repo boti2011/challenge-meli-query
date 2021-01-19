@@ -108,6 +108,34 @@ public class AlertRepositoryTest {
     assertEquals("sadasd-asdasd-asdasd-sadasd", resultRepository.getAlertId());
   }
 
+  @Test
+  public void findAlertByAnyFieldTestSuccess() {
+    // setup
+    Pageable paging = getPaging();
+
+    alertServerDtoWithData();
+
+    List<AlertServerDto> alerts = new ArrayList<>();
+    alerts.add(this.alertServerDto);
+
+    when(template.query(anyString(), any(Object[].class), any(AlertServerMapper.class)))
+        .thenReturn(alerts);
+
+    when(template.queryForObject(anyString(), any(Class.class), anyString())).thenReturn(1);
+
+    // execution
+    Optional<Page<AlertServerDto>> result = alertRepository.findAlertByAnyField("", paging);
+
+    AlertServerDto resultRepository = result.get().getContent().get(0);
+
+    // asserts
+    assertEquals("Virtual", resultRepository.getServerType());
+    assertEquals("SERVER", resultRepository.getServerName());
+    assertEquals("Alert", resultRepository.getDescriptionAlert());
+    assertEquals(new Date(123123), resultRepository.getCreatedAt());
+    assertEquals("sadasd-asdasd-asdasd-sadasd", resultRepository.getAlertId());
+  }
+
   public void alertServerDtoWithData() {
     this.alertServerDto.setServerType("Virtual");
     this.alertServerDto.setServerName("SERVER");

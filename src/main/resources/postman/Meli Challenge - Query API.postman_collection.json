@@ -79,6 +79,44 @@
 				"description": "Get Alerts information of Servers of Meli by Description"
 			},
 			"response": []
+		},
+		{
+			"name": "Get Alerts By Any Field",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8093/challenge/alerts/search/any/field?field=no-pin*&page=0&size=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8093",
+					"path": [
+						"challenge",
+						"alerts",
+						"search",
+						"any",
+						"field"
+					],
+					"query": [
+						{
+							"key": "field",
+							"value": "no-pin*"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				},
+				"description": "Get alerts information by any field"
+			},
+			"response": []
 		}
 	]
 }
