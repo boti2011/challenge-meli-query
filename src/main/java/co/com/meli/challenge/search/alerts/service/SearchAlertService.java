@@ -8,4 +8,6 @@ public interface SearchAlertService {
   SearchAlertResponse getAlertsByDescription(String description, Pageable paging);
 
   SearchAlertResponse getAlertsByServerName(String serverName, Pageable paging);
+
+  SearchAlertResponse getAlertsByAnyField(String field, Pageable paging);
 }

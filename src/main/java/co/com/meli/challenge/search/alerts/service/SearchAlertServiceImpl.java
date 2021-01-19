@@ -36,6 +36,13 @@ public class SearchAlertServiceImpl implements SearchAlertService {
     return getResponseService(alerts);
   }
 
+  @Override
+  public SearchAlertResponse getAlertsByAnyField(String field, Pageable paging) {
+    LOGGER.info("Service any field: {}", field);
+    Optional<Page<AlertServerDto>> alerts = repository.findAlertByAnyField(field, paging);
+    return getResponseService(alerts);
+  }
+
   public SearchAlertResponse getResponseService(Optional<Page<AlertServerDto>> alerts) {
     SearchAlertResponse response = new SearchAlertResponse();
     if (!alerts.isPresent() || alerts.get().getContent().isEmpty()) {

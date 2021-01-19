@@ -63,6 +63,22 @@ public class AlertsControllerTest {
     assertEquals("OK", response.getStatusCode().name());
   }
 
+  @Test
+  public void findAlertByAnyFieldSuccess() {
+    // setup
+    fillSuccessResponseWithData();
+
+    // execution
+    final ResponseEntity<SearchAlertResponse> response =
+        controller.findAlertByAnyField("SERVER", 0, 1);
+
+    // assertions
+    assertNotNull(response);
+
+    assertEquals(200, response.getStatusCodeValue());
+    assertEquals("OK", response.getStatusCode().name());
+  }
+
   public void fillSuccessResponseWithData() {
     Map<String, Object> data = new HashMap<>();
     this.searchAlertResponse.setStatus(200);
