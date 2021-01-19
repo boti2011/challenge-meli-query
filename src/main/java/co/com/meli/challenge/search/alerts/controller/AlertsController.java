@@ -36,7 +36,7 @@ public class AlertsController {
   }
 
   @GetMapping("/name")
-  public ResponseEntity<SearchAlertResponse> createAlert(
+  public ResponseEntity<SearchAlertResponse> findAlertByServerName(
       @RequestParam(name = "name") String serverName,
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "5") int size) {
