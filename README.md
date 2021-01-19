@@ -38,6 +38,7 @@ gradle bootrun
 
 ## Consumir API
 Puede realizar el consumo a través de postman, descargando el siguiente [archivo](https://github.com/boti2011/challenge-meli-query/tree/master/src/main/resources/postman)
+
 ### NOTA
 
 Para consumir el API desplegado en HEROKU, cambiar [http://localhost:8093/]() por [http://challenge-meli-query.herokuapp.com/]()
