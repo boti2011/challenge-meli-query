@@ -28,7 +28,7 @@ public class AlertsController {
   @ApiOperation(value = "Search of alerts by description field", response = ResponseEntity.class)
   @RequestMapping(
       method = RequestMethod.GET,
-      path = "/{description}/{page}/{size}",
+      path = "/description",
       produces = "application/json")
   @ApiResponses(
       value = {
@@ -59,7 +59,7 @@ public class AlertsController {
       })
   @RequestMapping(
       method = RequestMethod.GET,
-      path = "/{name}/{page}/{size}",
+      path = "/name",
       produces = "application/json")
   @GetMapping("/name")
   public ResponseEntity<SearchAlertResponse> findAlertByServerName(
