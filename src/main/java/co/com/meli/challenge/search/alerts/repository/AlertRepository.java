@@ -10,4 +10,6 @@ public interface AlertRepository {
   Optional<Page<AlertServerDto>> findAlertByDescription(String descriptionAlert, Pageable paging);
 
   Optional<Page<AlertServerDto>> findAlertByServerName(String serverName, Pageable paging);
+
+  Optional<Page<AlertServerDto>> findAlertByAnyField(String field, Pageable paging);
 }

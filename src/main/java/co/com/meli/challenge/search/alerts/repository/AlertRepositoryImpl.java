@@ -59,6 +59,25 @@ public class AlertRepositoryImpl implements AlertRepository {
     return Optional.of(new PageImpl<>(alerts, paging, countByServerName(serverName)));
   }
 
+  @Override
+  public Optional<Page<AlertServerDto>> findAlertByAnyField(String field, Pageable paging) {
+    LOGGER.info("Field Repository: {}", field);
+    String sql =
+        "SELECT * "
+            + "FROM SERVER_ALERTS "
+            + "WHERE MATCH(SERVER_ID, DESCRIPTION_ALERT, ALERT_ID, SERVER_TYPE) AGAINST ( ? IN BOOLEAN MODE ) "
+            + "ORDER BY SERVER_ID ASC "
+            + "LIMIT %d OFFSET %d";
+
+    List<AlertServerDto> alerts =
+        this.template.query(
+            String.format(sql, paging.getPageSize(), paging.getOffset()),
+            new Object[] {field},
+            new AlertServerMapper());
+
+    return Optional.of(new PageImpl<>(alerts, paging, countByAnyField(field)));
+  }
+
   private int countByDescriptionAlert(String description) {
     String sql =
         "SELECT count(1) "
@@ -75,5 +94,14 @@ public class AlertRepositoryImpl implements AlertRepository {
             + "WHERE MATCH(SERVER_ID) AGAINST ( ? IN BOOLEAN MODE ) "
             + "ORDER BY SERVER_ID ASC ";
     return this.template.queryForObject(sql, Integer.class, serverName);
+  }
+
+  private int countByAnyField(String field) {
+    String sql =
+        "SELECT count(1) "
+            + "FROM SERVER_ALERTS "
+            + "WHERE MATCH(SERVER_ID, DESCRIPTION_ALERT, ALERT_ID, SERVER_TYPE) AGAINST ( ? IN BOOLEAN MODE ) "
+            + "ORDER BY SERVER_ID ASC ";
+    return this.template.queryForObject(sql, Integer.class, field);
   }
 }

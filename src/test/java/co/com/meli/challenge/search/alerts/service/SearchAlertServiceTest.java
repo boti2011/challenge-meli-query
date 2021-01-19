@@ -55,6 +55,16 @@ public class SearchAlertServiceTest {
     assertNotNull(responseService);
   }
 
+  @Test
+  public void searchAlertByAnyFieldTestSuccess() {
+
+    // execution
+    final SearchAlertResponse responseService = service.getAlertsByAnyField("DESC", getPageable());
+
+    // asserts
+    assertNotNull(responseService);
+  }
+
   public Page<AlertServerDto> getAlertServerDtoPage() {
     return new Page<AlertServerDto>() {
       @Override
