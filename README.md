@@ -56,11 +56,11 @@ Puede realizar el consumo a través de postman, descargando el siguiente [archiv
 
 #### NOTA
 
-Para consumir el API desplegado en HEROKU, cambiar [http://localhost:8093/]() por [http://challenge-dev.herokuapp.com/]()
+Para consumir el API desplegado en HEROKU, cambiar [http://localhost:8093/]() por [http://challenge-meli-query.herokuapp.com/]()
 
 
 ## Documentación del API
 
 Se publica en el siguiente link la especificación de los servicios expuestos por medio de SWAGGER
 
-- http://challenge-dev.herokuapp.com/challenge/swagger-ui.html#/
+- http://challenge-meli-query.herokuapp.com/challenge/swagger-ui.html#/
